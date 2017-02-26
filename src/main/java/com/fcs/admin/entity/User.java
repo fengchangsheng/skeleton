@@ -23,6 +23,9 @@ public class User extends Model<User> {
 	private String password;
 	private String phone;
 
+	public User() {
+	}
+
 	public User(String username, String password, String phone) {
 		this.username = username;
 		this.password = password;
