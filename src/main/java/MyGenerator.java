@@ -57,7 +57,7 @@ public class MyGenerator {
         });
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("isnotroot");
+        dsc.setPassword("root");
         dsc.setUrl("jdbc:mysql://127.0.0.1:3306/skeleton?characterEncoding=utf8");
         mpg.setDataSource(dsc);
 
@@ -93,6 +93,8 @@ public class MyGenerator {
         PackageConfig pc = new PackageConfig();
         pc.setParent("com.fcs");
         pc.setModuleName("admin");
+        pc.setController("controller");
+
         mpg.setPackageInfo(pc);
 
         // 注入自定义配置，可以在 VM 中使用 cfg.abc 设置的值
