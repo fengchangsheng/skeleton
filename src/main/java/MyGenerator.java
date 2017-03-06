@@ -58,7 +58,7 @@ public class MyGenerator {
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("root");
-        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/skeleton?characterEncoding=utf8");
+        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/skeleton_shiro?characterEncoding=utf8");
         mpg.setDataSource(dsc);
 
         // 策略配置
@@ -66,7 +66,7 @@ public class MyGenerator {
         strategy.setTablePrefix(new String[]{"t_"});// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.remove_prefix);// 表名生成策略
         // strategy.setInclude(new String[] { "user" }); // 需要生成的表
-        // strategy.setExclude(new String[]{"test"}); // 排除生成的表
+         strategy.setExclude(new String[]{"t_user"}); // 排除生成的表
         // 字段名生成策略
         strategy.setFieldNaming(NamingStrategy.underline_to_camel);
         // 自定义实体父类
@@ -93,30 +93,30 @@ public class MyGenerator {
         PackageConfig pc = new PackageConfig();
         pc.setParent("com.fcs");
         pc.setModuleName("admin");
-        pc.setController("controller");
+//        pc.setController("controller");
 
         mpg.setPackageInfo(pc);
 
         // 注入自定义配置，可以在 VM 中使用 cfg.abc 设置的值
-        InjectionConfig cfg = new InjectionConfig() {
-            @Override
-            public void initMap() {
-                Map<String, Object> map = new HashMap<String, Object>();
-                map.put("abc", this.getConfig().getGlobalConfig().getAuthor() + "-mp");
-                this.setMap(map);
-            }
-        };
-        // 自定义 xxList.jsp 生成
-        List<FileOutConfig> focList = new ArrayList<FileOutConfig>();
-        focList.add(new FileOutConfig("/template/list.jsp.vm") {
-            @Override
-            public String outputFile(TableInfo tableInfo) {
-                // 自定义输入文件名称
-                return "D://my_" + tableInfo.getEntityName() + ".jsp";
-            }
-        });
-        cfg.setFileOutConfigList(focList);
-        mpg.setCfg(cfg);
+//        InjectionConfig cfg = new InjectionConfig() {
+//            @Override
+//            public void initMap() {
+//                Map<String, Object> map = new HashMap<String, Object>();
+//                map.put("abc", this.getConfig().getGlobalConfig().getAuthor() + "-mp");
+//                this.setMap(map);
+//            }
+//        };
+//        // 自定义 xxList.jsp 生成
+//        List<FileOutConfig> focList = new ArrayList<FileOutConfig>();
+//        focList.add(new FileOutConfig("/template/list.jsp.vm") {
+//            @Override
+//            public String outputFile(TableInfo tableInfo) {
+//                // 自定义输入文件名称
+//                return "D://my_" + tableInfo.getEntityName() + ".jsp";
+//            }
+//        });
+//        cfg.setFileOutConfigList(focList);
+//        mpg.setCfg(cfg);
 
         // 自定义模板配置，可以 copy 源码 mybatis-plus/src/main/resources/template 下面内容修改，
         // 放置自己项目的 src/main/resources/template 目录下, 默认名称一下可以不配置，也可以自定义模板名称

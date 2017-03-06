@@ -2,7 +2,10 @@ package com.fcs.admin.entity;
 
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+
+import java.beans.Transient;
 import java.io.Serializable;
+import java.util.List;
 
 
 /**
@@ -22,6 +25,9 @@ public class User extends Model<User> {
 	private String username;
 	private String password;
 	private String phone;
+
+
+	private List<Role> roleList;
 
 	public User() {
 	}
@@ -68,6 +74,15 @@ public class User extends Model<User> {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	@Transient
+	public List<Role> getRoleList() {
+		return roleList;
+	}
+
+	public void setRoleList(List<Role> roleList) {
+		this.roleList = roleList;
 	}
 
 	@Override

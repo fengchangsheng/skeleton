@@ -10,4 +10,7 @@
 		<result column="phone" property="phone" />
 	</resultMap>
 
+	<select id="findByName" resultType="com.fcs.admin.entity.User" parameterType="String">
+		SELECT id,username,password,phone from t_user where username=#{name}
+	</select>
 </mapper>

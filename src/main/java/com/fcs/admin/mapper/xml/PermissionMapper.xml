@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fcs.admin.mapper.PermissionMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.fcs.admin.entity.Permission">
+		<id column="id" property="id" />
+		<result column="type" property="type" />
+		<result column="name" property="name" />
+		<result column="url" property="url" />
+		<result column="permission" property="permission" />
+	</resultMap>
+
+</mapper>

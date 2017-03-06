@@ -1,6 +1,6 @@
 package com.fcs.admin.mapper;
 
-import com.fcs.admin.entity.User;
+import com.fcs.admin.entity.Permission;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
@@ -9,10 +9,8 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * </p>
  *
  * @author Lucare
- * @since 2017-02-24
+ * @since 2017-03-06
  */
-public interface UserMapper extends BaseMapper<User> {
-
-    User findByName(String name);
+public interface PermissionMapper extends BaseMapper<Permission> {
 
 }
