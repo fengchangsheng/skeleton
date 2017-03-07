@@ -12,5 +12,7 @@ import com.baomidou.mybatisplus.service.IService;
  * @since 2017-02-24
  */
 public interface IUserService extends IService<User> {
-	
+
+    User findByName(String name);
+
 }

@@ -28,20 +28,20 @@ public class ShiroConfiguration {
         return new LifecycleBeanPostProcessor();
     }
 
-    @Bean(name = "hashedCredentialsMatcher")
-    public HashedCredentialsMatcher hashedCredentialsMatcher() {
-        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
-        credentialsMatcher.setHashAlgorithmName("MD5");
-        credentialsMatcher.setHashIterations(2);
-        credentialsMatcher.setStoredCredentialsHexEncoded(true);
-        return credentialsMatcher;
-    }
+//    @Bean(name = "hashedCredentialsMatcher")
+//    public HashedCredentialsMatcher hashedCredentialsMatcher() {
+//        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+//        credentialsMatcher.setHashAlgorithmName("MD5");
+//        credentialsMatcher.setHashIterations(2);
+//        credentialsMatcher.setStoredCredentialsHexEncoded(true);
+//        return credentialsMatcher;
+//    }
 
     @Bean(name = "shiroRealm")
     @DependsOn("lifecycleBeanPostProcessor")
     public ShiroRealm shiroRealm() {
         ShiroRealm realm = new ShiroRealm();
-        realm.setCredentialsMatcher(hashedCredentialsMatcher());
+//        realm.setCredentialsMatcher(hashedCredentialsMatcher());
         return realm;
     }
 
@@ -52,32 +52,17 @@ public class ShiroConfiguration {
         return ehCacheManager;
     }
 
-//    @Bean(name = "securityManager")
-//    public SecurityManager securityManager(){
-//        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-//        securityManager.setRealm(shiroRealm());
-//        securityManager.setCacheManager(ehCacheManager());
-//        return securityManager;
-//    }
-
-    /**
-     * 创建默认WebSecurityManager
-     * @param myShiroRealm
-     * @return
-     */
-    @Bean
-    public DefaultWebSecurityManager getDefaultWebSecurityManager(ShiroRealm myShiroRealm) {
-        DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
-        defaultWebSecurityManager.setRealm(myShiroRealm);
-        //用户授权/认证信息Cache, 采用EhCache 缓存
-        defaultWebSecurityManager.setCacheManager(ehCacheManager());
-        return defaultWebSecurityManager;
+    @Bean(name = "securityManager")
+    public DefaultWebSecurityManager securityManager(){
+        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+        securityManager.setRealm(shiroRealm());
+        securityManager.setCacheManager(ehCacheManager());
+        return securityManager;
     }
 
     @Bean(name = "shiroFilter")
     public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager  securityManager){
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-//        shiroFilterFactoryBean.setSecurityManager(securityManager());
         shiroFilterFactoryBean.setSecurityManager(securityManager);
 
 //        Map<String, Filter> filters = new LinkedHashMap<String, Filter>();
@@ -112,7 +97,6 @@ public class ShiroConfiguration {
     @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(DefaultWebSecurityManager securityManager) {
         AuthorizationAttributeSourceAdvisor aasa = new AuthorizationAttributeSourceAdvisor();
-//        aasa.setSecurityManager(securityManager());
         aasa.setSecurityManager(securityManager);
         return aasa;
     }

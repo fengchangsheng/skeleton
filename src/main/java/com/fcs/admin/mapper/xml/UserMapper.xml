@@ -8,9 +8,15 @@
 		<result column="username" property="username" />
 		<result column="password" property="password" />
 		<result column="phone" property="phone" />
+		<collection property="roleList"  column="id" ofType="Role">
+			<id property="id" column="id"/>
+			<result property="name" column="name"/>
+			<result property="description" column="description"/>
+		</collection>
 	</resultMap>
 
-	<select id="findByName" resultType="com.fcs.admin.entity.User" parameterType="String">
+	<select id="findByName" resultType="com.fcs.admin.entity.User" parameterType="java.lang.String">
 		SELECT id,username,password,phone from t_user where username=#{name}
 	</select>
+
 </mapper>

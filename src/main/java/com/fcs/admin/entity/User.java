@@ -3,7 +3,6 @@ package com.fcs.admin.entity;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
 
-import java.beans.Transient;
 import java.io.Serializable;
 import java.util.List;
 
@@ -25,7 +24,6 @@ public class User extends Model<User> {
 	private String username;
 	private String password;
 	private String phone;
-
 
 	private List<Role> roleList;
 
@@ -76,7 +74,7 @@ public class User extends Model<User> {
 		this.phone = phone;
 	}
 
-	@Transient
+
 	public List<Role> getRoleList() {
 		return roleList;
 	}
