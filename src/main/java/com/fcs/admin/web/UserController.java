@@ -22,6 +22,23 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+    @RequestMapping("/")
+    public String list() {
+        return "list";
+    }
+
+    @RequestMapping("/toCreate")
+    public String toCreate(User user) {
+        user.insert();
+        return "toCreate";
+    }
+
+    @RequestMapping("/create")
+    public Page<User> create(User user) {
+        user.insert();
+        return null;
+    }
+
     /**
      * AR 部分测试
      */

@@ -4,10 +4,13 @@ import com.fcs.admin.entity.Permission;
 import com.fcs.admin.entity.Role;
 import com.fcs.admin.entity.User;
 import com.fcs.admin.mapper.UserMapper;
+import com.fcs.admin.service.IUserService;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +30,10 @@ public class ShiroRealm extends AuthorizingRealm {
     @Autowired
     private UserMapper userMapper;
 
+
+    @Autowired
+    private IUserService userService;
+
     /**
      * 登录认证
      *
@@ -43,7 +50,10 @@ public class ShiroRealm extends AuthorizingRealm {
 //        String md5Pwd = new Md5Hash("123", "lucare",2).toString();
         if (hasUser != null) {
             // 若存在，将此用户存放到登录认证info中，无需自己做密码对比，Shiro会为我们进行密码对比校验
-            return new SimpleAuthenticationInfo(hasUser.getUsername(), hasUser.getPassword(), getName());
+            userService.findRolePermissions(hasUser.getId());
+            Session session = SecurityUtils.getSubject().getSession();
+            session.setAttribute("user", hasUser);
+            return new SimpleAuthenticationInfo(hasUser, hasUser.getPassword(), getName());
         }
         return null;
     }
@@ -58,11 +68,11 @@ public class ShiroRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         logger.info("##################执行Shiro权限认证##################");
         //获取当前登录输入的用户名，等价于(String) principalCollection.fromRealm(getName()).iterator().next();
-        String loginName = (String) super.getAvailablePrincipal(principalCollection);
-        //到数据库查是否有此对象
-        User user = null;// 实际项目中，这里可以根据实际情况做缓存，如果不做，Shiro自己也是有时间间隔机制，2分钟内不会重复执行该方法
-        user = userMapper.findByName(loginName);
-
+//        String loginName = (String) super.getAvailablePrincipal(principalCollection);
+        User user = (User) principalCollection.getPrimaryPrincipal();
+//        //到数据库查是否有此对象
+//        User user = null;// 实际项目中，这里可以根据实际情况做缓存，如果不做，Shiro自己也是有时间间隔机制，2分钟内不会重复执行该方法
+//        user = userMapper.findByName(loginName);
         if (user != null) {
             //权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
             SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();

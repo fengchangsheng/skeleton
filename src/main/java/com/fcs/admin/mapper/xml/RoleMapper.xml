@@ -9,4 +9,8 @@
 		<result column="description" property="description" />
 	</resultMap>
 
+	<select id="findRoleIdListByUserId" resultType="java.lang.Long" parameterType="java.lang.Long">
+		SELECT id from t_user_role where userid = #{uid}
+	</select>
+
 </mapper>

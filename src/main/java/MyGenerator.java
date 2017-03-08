@@ -28,7 +28,8 @@ public class MyGenerator {
 
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-        gc.setOutputDir("D:\\devData\\IdeaProjects\\skeleton\\src\\main\\java");
+//        gc.setOutputDir("D:\\devData\\IdeaProjects\\skeleton\\src\\main\\java");
+        gc.setOutputDir("D:\\test");
         gc.setFileOverride(true);
         gc.setActiveRecord(true);
         gc.setEnableCache(false);// XML 二级缓存
@@ -66,7 +67,7 @@ public class MyGenerator {
         strategy.setTablePrefix(new String[]{"t_"});// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.remove_prefix);// 表名生成策略
         // strategy.setInclude(new String[] { "user" }); // 需要生成的表
-         strategy.setExclude(new String[]{"t_user"}); // 排除生成的表
+        strategy.setExclude(new String[]{"t_user","t_role","t_permission"}); // 排除生成的表
         // 字段名生成策略
         strategy.setFieldNaming(NamingStrategy.underline_to_camel);
         // 自定义实体父类
