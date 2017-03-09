@@ -1,10 +1,10 @@
 package com.fcs.common;
 
-import com.fcs.admin.entity.Permission;
 import com.fcs.admin.entity.Role;
 import com.fcs.admin.entity.User;
-import com.fcs.admin.mapper.UserMapper;
 import com.fcs.admin.service.IUserService;
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -15,9 +15,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 /**
@@ -26,10 +24,6 @@ import java.util.Set;
 public class ShiroRealm extends AuthorizingRealm {
 
     private Logger logger = LoggerFactory.getLogger(ShiroRealm.class);
-
-    @Autowired
-    private UserMapper userMapper;
-
 
     @Autowired
     private IUserService userService;
@@ -44,15 +38,16 @@ public class ShiroRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
-//        logger.info("验证当前Subject时获取到token为：" + ReflectionToStringBuilder.toString(token, ToStringStyle.MULTI_LINE_STYLE));
+        logger.info("验证当前Subject时获取到token为：" + ReflectionToStringBuilder.toString(token, ToStringStyle.MULTI_LINE_STYLE));
         //查出是否有此用户
-        User hasUser = userMapper.findByName(token.getUsername());
+        User hasUser = userService.findByName(token.getUsername());
 //        String md5Pwd = new Md5Hash("123", "lucare",2).toString();
         if (hasUser != null) {
             // 若存在，将此用户存放到登录认证info中，无需自己做密码对比，Shiro会为我们进行密码对比校验
-            userService.findRolePermissions(hasUser.getId());
-            Session session = SecurityUtils.getSubject().getSession();
-            session.setAttribute("user", hasUser);
+            List<Role> list = userService.findRolePermissions(hasUser.getId());
+            hasUser.setRoleList(list);
+//            Session session = SecurityUtils.getSubject().getSession();
+//            session.setAttribute("user", hasUser);
             return new SimpleAuthenticationInfo(hasUser, hasUser.getPassword(), getName());
         }
         return null;
@@ -77,18 +72,11 @@ public class ShiroRealm extends AuthorizingRealm {
             //权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
             SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
             //用户的角色集合
-            Set<String> set = new HashSet<>();
             for (Role role : user.getRoleList()) {
-                set.add(role.getName());
+                info.addRole(role.getName());
+                info.addStringPermissions(role.getPerNameSet());
             }
-            info.setRoles(set);
-            //用户的角色对应的所有权限，如果只使用角色定义访问权限，下面的四行可以不要
-            List<Role> roleList = user.getRoleList();
-            for (Role role : roleList) {
-                for (Permission p : role.getPermissions()) {
-                    info.addStringPermission(p.getPermission());
-                }
-            }
+
             return info;
         }
         // 返回null的话，就会导致任何用户访问被拦截的请求时，都会自动跳转到unauthorizedUrl指定的地址

@@ -9,4 +9,11 @@
 		<result column="perid" property="perid" />
 	</resultMap>
 
+	<select id="findPermissions" resultType="java.lang.String" parameterType="java.lang.Long">
+		SELECT permission.permission
+		from t_role_permission rpermission
+		left join t_permission permission on rpermission.perid = permission.id
+		where rpermission.roleid = #{roleId}
+	</select>
+
 </mapper>

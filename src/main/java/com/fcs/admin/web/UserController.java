@@ -3,6 +3,7 @@ package com.fcs.admin.web;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.fcs.admin.entity.User;
 import com.fcs.admin.service.IUserService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +23,11 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    @RequestMapping("/")
+    @RequiresPermissions("admin:user:view")
+    @RequestMapping("/list")
     public String list() {
-        return "list";
+        System.out.println("in admin user default");
+        return "admin/user/list";
     }
 
     @RequestMapping("/toCreate")

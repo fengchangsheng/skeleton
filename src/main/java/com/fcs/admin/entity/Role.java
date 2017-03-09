@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -23,6 +24,7 @@ public class Role extends Model<Role> {
 	private String name;
 	private String description;
 	private List<Permission> permissions;
+	private Set<String> perNameSet;
 
 
 	public Long getId() {
@@ -55,6 +57,14 @@ public class Role extends Model<Role> {
 
 	public void setPermissions(List<Permission> permissions) {
 		this.permissions = permissions;
+	}
+
+	public Set<String> getPerNameSet() {
+		return perNameSet;
+	}
+
+	public void setPerNameSet(Set<String> perNameSet) {
+		this.perNameSet = perNameSet;
 	}
 
 	@Override

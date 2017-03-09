@@ -1,9 +1,10 @@
 package com.fcs.admin.service;
 
+import com.fcs.admin.entity.Role;
 import com.fcs.admin.entity.User;
 import com.baomidou.mybatisplus.service.IService;
 
-import java.util.Map;
+import java.util.List;
 
 /**
  * <p>
@@ -17,6 +18,6 @@ public interface IUserService extends IService<User> {
 	
     User findByName(String name);
 
-    Map<String,Object> findRolePermissions(long uid);
+    List<Role> findRolePermissions(long uid);
 
 }

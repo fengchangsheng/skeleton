@@ -1,16 +1,14 @@
 package com.fcs.admin.service.impl;
 
+import com.fcs.admin.entity.Role;
 import com.fcs.admin.entity.User;
-import com.fcs.admin.mapper.PermissionMapper;
-import com.fcs.admin.mapper.RoleMapper;
-import com.fcs.admin.mapper.UserMapper;
+import com.fcs.admin.mapper.*;
 import com.fcs.admin.service.IUserService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * <p>
@@ -27,10 +25,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     private UserMapper userMapper;
 
     @Autowired
-    private RoleMapper roleMapper;
+    private UserRoleMapper userRoleMapper;
 
     @Autowired
-    private PermissionMapper permissionMapper;
+    private RolePermissionMapper rolePermissionMapper;
 
     @Override
     public User findByName(String name) {
@@ -38,11 +36,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     }
 
     @Override
-    public Map<String,Object> findRolePermissions(long uid) {
-        List<Long> roleIdList = roleMapper.findRoleIdListByUserId(uid);
-        for (Long id : roleIdList) {
-            System.out.println("roleId is " + id);
+    public List<Role> findRolePermissions(long uid) {
+        List<Role> roleIdList = userRoleMapper.findRoleListByUserId(uid);
+        for (Role role : roleIdList) {
+            Set<String> everyRolePer = rolePermissionMapper.findPermissions(role.getId());
+            role.setPerNameSet(everyRolePer);
         }
-        return null;
+        return roleIdList;
     }
 }

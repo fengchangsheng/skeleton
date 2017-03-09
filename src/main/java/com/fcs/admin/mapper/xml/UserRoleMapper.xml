@@ -9,4 +9,8 @@
 		<result column="roleid" property="roleid" />
 	</resultMap>
 
+	<select id="findRoleListByUserId" resultType="com.fcs.admin.entity.Role" parameterType="java.lang.Long">
+		SELECT role.id,role.name from t_user_role urole left join t_role role on urole.roleid = role.id where userid = #{uid}
+	</select>
+
 </mapper>
