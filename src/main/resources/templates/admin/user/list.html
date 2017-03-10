@@ -1,31 +1,23 @@
 <!DOCTYPE html>
 <html>
 
-
-<!-- Mirrored from www.zi-han.net/theme/hplus/table_bootstrap.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:20:03 GMT -->
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
     <title>skeleton 用户管理</title>
-
-    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
-    <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
-    <link href="css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
-    <link href="css/animate.min.css" rel="stylesheet">
-    <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
-
-
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="/css/animate.min.css" rel="stylesheet">
+    <link href="/css/style.min862f.css?v=4.1.0" rel="stylesheet">
 </head>
 
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
-
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h5>基本</h5>
+            <h5>用户管理</h5>
             <div class="ibox-tools">
                 <a class="collapse-link">
                     <i class="fa fa-chevron-up"></i>
@@ -46,32 +38,20 @@
         </div>
         <div class="ibox-content">
             <div class="row row-lg">
-                <div class="col-sm-6">
-                    <h4 class="example-title">从URL加载</h4>
+                <div class="col-sm-12">
+                    <h4 class="example-title">用户列表</h4>
                     <div class="example">
-                        <table data-toggle="table" data-url="js/demo/table_base.json" data-height="250" data-mobile-responsive="true">
+                        <table data-toggle="table" data-url="/admin/user/list" data-height="600" data-response-handler="handlerData"
+                               data-pagination="true" data-mobile-responsive="true" cache="false">
                             <thead>
                             <tr>
-                                <th data-field="Tid">ID</th>
-                                <th data-field="First">姓名</th>
-                                <th data-field="sex">性别</th>
-                                <th data-field="Score">评分</th>
-                            </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="col-sm-6">
-                    <h4 class="example-title">从数据中加载</h4>
-                    <div class="example">
-                        <table id="exampleTableFromData" data-mobile-responsive="true">
-                            <thead>
-                            <tr>
-                                <th data-field="Tid">ID</th>
-                                <th data-field="First">姓名</th>
-                                <th data-field="sex">性别</th>
-                                <th data-field="Score">评分</th>
+                                <th data-width="5%"><input name="checkAll" type="checkbox" value="" /></th>
+                                <th data-field="id" data-width="15%">ID</th>
+                                <th data-field="username" data-width="15%">姓名</th>
+                                <th data-field="sex" data-width="15%">性别</th>
+                                <th data-field="phone" data-width="20%">手机</th>
+                                <th data-field="state" data-width="10%" data-formatter="stateFormatter">状态</th>
+                                <th data-width="20%">操作</th>
                             </tr>
                             </thead>
                         </table>
@@ -82,17 +62,16 @@
     </div>
     <!-- End Panel Basic -->
 </div>
-<script src="js/jquery.min.js?v=2.1.4"></script>
-<script src="js/bootstrap.min.js?v=3.3.6"></script>
-<script src="js/content.min.js?v=1.0.0"></script>
-<script src="js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
-<script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
-<script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
-<script src="js/demo/bootstrap-table-demo.min.js"></script>
+<script src="/js/jquery.min.js?v=2.1.4"></script>
+<script src="/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="/js/content.min.js?v=1.0.0"></script>
+<script src="/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<!--<script src="/js/demo/bootstrap-table-demo.min.js"></script>-->
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
-
+<script src="/js/bootstrap-table.my.js"></script>
 </body>
-
 
 <!-- Mirrored from www.zi-han.net/theme/hplus/table_bootstrap.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:20:06 GMT -->
 </html>

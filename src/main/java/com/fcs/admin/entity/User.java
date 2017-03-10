@@ -26,6 +26,7 @@ public class User extends Model<User> {
 	private String username;
 	private String password;
 	private String phone;
+	private int state;
 
 	@TableField(exist = false)
 	private List<Role> roleList;
@@ -77,6 +78,13 @@ public class User extends Model<User> {
 		this.phone = phone;
 	}
 
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
 
 	public List<Role> getRoleList() {
 		return roleList;

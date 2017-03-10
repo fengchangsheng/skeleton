@@ -1,5 +1,6 @@
 package com.fcs.admin.service;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.fcs.admin.entity.Role;
 import com.fcs.admin.entity.User;
 import com.baomidou.mybatisplus.service.IService;
@@ -19,5 +20,7 @@ public interface IUserService extends IService<User> {
     User findByName(String name);
 
     List<Role> findRolePermissions(long uid);
+
+    public Page<User> selectUserPage(Page<User> page);
 
 }

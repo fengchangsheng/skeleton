@@ -7,6 +7,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * <p>
@@ -24,10 +25,17 @@ public class UserController {
     private IUserService userService;
 
     @RequiresPermissions("admin:user:view")
-    @RequestMapping("/list")
-    public String list() {
-        System.out.println("in admin user default");
+    @RequestMapping("/index")
+    public String index() {
         return "admin/user/list";
+    }
+
+    @RequiresPermissions("admin:user:view")
+    @RequestMapping("/list")
+    @ResponseBody
+    public Page<User> list() {
+        Page<User> page = userService.selectUserPage(new Page<User>(0, 12));
+        return page;
     }
 
     @RequestMapping("/toCreate")

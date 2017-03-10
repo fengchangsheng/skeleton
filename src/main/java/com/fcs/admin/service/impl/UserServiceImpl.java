@@ -1,5 +1,6 @@
 package com.fcs.admin.service.impl;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.fcs.admin.entity.Role;
 import com.fcs.admin.entity.User;
 import com.fcs.admin.mapper.*;
@@ -43,5 +44,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             role.setPerNameSet(everyRolePer);
         }
         return roleIdList;
+    }
+
+    public Page<User> selectUserPage(Page<User> page) {
+        page.setRecords(baseMapper.selectUserList(page));
+        return page;
     }
 }
