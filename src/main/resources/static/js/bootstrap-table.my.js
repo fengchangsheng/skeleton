@@ -12,3 +12,4 @@ function stateFormatter(value,row,index) {
     else
         return "禁用";
 }
+

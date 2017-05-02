@@ -46,8 +46,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         return roleIdList;
     }
 
+    @Override
     public Page<User> selectUserPage(Page<User> page) {
-        page.setRecords(baseMapper.selectUserList(page));
+        page.setRecords(userMapper.selectUserList(page));
         return page;
     }
 }

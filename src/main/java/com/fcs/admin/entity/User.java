@@ -27,6 +27,8 @@ public class User extends Model<User> {
 	private String password;
 	private String phone;
 	private int state;
+	private int sex;
+	private String remarks;
 
 	@TableField(exist = false)
 	private List<Role> roleList;
@@ -92,6 +94,22 @@ public class User extends Model<User> {
 
 	public void setRoleList(List<Role> roleList) {
 		this.roleList = roleList;
+	}
+
+	public int getSex() {
+		return sex;
+	}
+
+	public void setSex(int sex) {
+		this.sex = sex;
+	}
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 
 	@Override

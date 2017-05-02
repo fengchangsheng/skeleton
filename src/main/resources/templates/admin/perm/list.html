@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>skeleton 权限管理</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="/css/animate.min.css" rel="stylesheet">
+    <link href="/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>权限管理</h5>
+            <div class="ibox-tools">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-wrench"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#">选项1</a>
+                    </li>
+                    <li><a href="#">选项2</a>
+                    </li>
+                </ul>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+        </div>
+        <div class="ibox-content">
+            <div class="row row-lg">
+                <div class="col-sm-12">
+                    <h4 class="example-title">权限列表</h4>
+                    <div class="example">
+                        <table data-toggle="table" data-url="/admin/perm/list" data-height="600" data-response-handler="handlerData"
+                               data-pagination="true" data-mobile-responsive="true" cache="false">
+                            <thead>
+                            <tr>
+                                <th data-width="5%"><input name="checkAll" type="checkbox" value="" /></th>
+                                <th data-field="id" data-width="15%">ID</th>
+                                <th data-field="name" data-width="15%">角色名</th>
+                                <th data-field="permission" data-width="15%">权限</th>
+                                <th data-field="state" data-width="10%" data-formatter="stateFormatter">状态</th>
+                                <th data-width="20%" data-formatter="actionFormatter">操作</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Panel Basic -->
+</div>
+<script src="/js/jquery.min.js?v=2.1.4"></script>
+<script src="/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="/js/content.min.js?v=1.0.0"></script>
+<script src="/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<!--<script src="/js/demo/bootstrap-table-demo.min.js"></script>-->
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+<script src="/js/bootstrap-table.my.js"></script>
+</body>
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/table_bootstrap.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:20:06 GMT -->
+</html>

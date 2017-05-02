@@ -21,6 +21,6 @@ public interface IUserService extends IService<User> {
 
     List<Role> findRolePermissions(long uid);
 
-    public Page<User> selectUserPage(Page<User> page);
+    Page<User> selectUserPage(Page<User> page);
 
 }

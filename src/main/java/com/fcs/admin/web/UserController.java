@@ -34,8 +34,26 @@ public class UserController {
     @RequestMapping("/list")
     @ResponseBody
     public Page<User> list() {
-        Page<User> page = userService.selectUserPage(new Page<User>(0, 12));
+        Page<User> page = userService.selectPage(new Page<User>(0, 12));
         return page;
+    }
+
+    @RequestMapping("/changeState")
+    @ResponseBody
+    public String changeState(long id, int state) {
+        System.out.println(id);
+        User user = new User();
+        user.setId(id);
+        user.setState(state);
+        userService.updateById(user);
+        return "success";
+    }
+
+    @RequestMapping("/update")
+    @ResponseBody
+    public String update(User user) {
+        userService.updateById(user);
+        return "toCreate";
     }
 
     @RequestMapping("/toCreate")

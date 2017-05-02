@@ -8,7 +8,9 @@
 		<result column="username" property="username" />
 		<result column="password" property="password" />
 		<result column="phone" property="phone" />
+		<result column="sex" property="sex" />
 		<result column="state" property="state" />
+		<result column="remarks" property="remarks" />
 		<!--<collection property="roleList"  column="id" ofType="Role">-->
 			<!--<id property="id" column="id"/>-->
 			<!--<result property="name" column="name"/>-->
@@ -21,7 +23,7 @@
 	</select>
 
 	<select id="selectUserList" resultType="User">
-		SELECT id,username,phone,state FROM t_user
+		SELECT id,username,phone,sex,state,remarks FROM t_user
 	</select>
 
 </mapper>

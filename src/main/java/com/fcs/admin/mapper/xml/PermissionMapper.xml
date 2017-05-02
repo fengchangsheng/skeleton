@@ -11,4 +11,8 @@
 		<result column="permission" property="permission" />
 	</resultMap>
 
+	<select id="selectPermList" resultType="Permission">
+		SELECT id,name,permission FROM t_permission
+	</select>
+
 </mapper>

@@ -10,5 +10,8 @@
 	</resultMap>
 
 
+	<select id="selectRoleList" resultType="Role">
+		SELECT id,name,description FROM t_role
+	</select>
 
 </mapper>
