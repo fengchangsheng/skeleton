@@ -41,7 +41,6 @@ public class UserController {
     @RequestMapping("/changeState")
     @ResponseBody
     public String changeState(long id, int state) {
-        System.out.println(id);
         User user = new User();
         user.setId(id);
         user.setState(state);
@@ -49,11 +48,27 @@ public class UserController {
         return "success";
     }
 
-    @RequestMapping("/update")
+    @RequestMapping("/getUserById")
     @ResponseBody
+    public User getUserById(long id) {
+        User user = userService.selectById(id);
+        return user;
+    }
+
+    @RequestMapping("/update")
     public String update(User user) {
-        userService.updateById(user);
-        return "toCreate";
+        boolean isSuccc = userService.updateById(user);
+        if (isSuccc) {
+            return "redirect:index";
+        }
+        return "error";
+    }
+
+    @RequestMapping("/deleteOne")
+    @ResponseBody
+    public int deleteOne(long id) {
+        boolean isSucc = userService.deleteById(id);
+        return isSucc ? 1 : 0;
     }
 
     @RequestMapping("/toCreate")
