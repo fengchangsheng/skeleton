@@ -24,42 +24,21 @@ import java.util.regex.Pattern;
 
 
 /**
- * 
- * @author wuqq
- *
+ * 工具类
  */
 public class CommonUtils {
 
-	/**
-	 * 
-	 */
 	public static final String UTF8 = "UTF-8" ;
 	
-	
-	/**
-	 * 
-	 */
 	public static final List<?> EMPTY_LIST = Collections.unmodifiableList(new ArrayList<Object>());
 	
-	/**
-	 * 
-	 */
 	public static final Map<?,?> EMPTY_MAP = Collections.unmodifiableMap(new HashMap<Object, Object>());
 	
-	/**
-	 * 
-	 * @param input
-	 * @return
-	 */
+
 	public static boolean isEmpty(String input) {
 		return input==null || input.trim().isEmpty() ;
 	}
 	
-	/**
-	 * 
-	 * @param input
-	 * @return
-	 */
 	public static String emptyIfNull(String input) {
 		return input==null ? "" : input.trim() ;
 	}
@@ -68,28 +47,15 @@ public class CommonUtils {
 		return input == null ? "" : input.toString().trim();
 	}
 	
-	/**
-	 * 
-	 * @param input
-	 * @param def
-	 * @return
-	 */
 	public static String emptyIfNull(String input, String def) {
 		input = emptyIfNull(input) ;
 		return input.isEmpty() ? def : input ;
 	}
 	
-	
 	public static int parseInt(Object data) {
 		return parseInt(data, 0);
 	}
 	
-	/**
-	 * 
-	 * @param data
-	 * @param def
-	 * @return
-	 */
 	public static int parseInt(Object data, int def) {
 		if (data != null) {
 			try {
@@ -110,12 +76,6 @@ public class CommonUtils {
 		return parseLong(data, (long) def);
 	}
 	
-	/**
-	 * 
-	 * @param data
-	 * @param def
-	 * @return
-	 */
 	public static long parseLong(Object data, long def) {
 		if (data != null) {
 			try {
@@ -131,13 +91,7 @@ public class CommonUtils {
 	public static double parseDouble(Object data) {
 		return parseDouble(data, (double)0);
 	}
-	
-	/**
-	 * 
-	 * @param data
-	 * @param def
-	 * @return
-	 */
+
 	public static double parseDouble(Object data, double def) {
 		double value = def;
 		if (data != null) {
@@ -187,32 +141,15 @@ public class CommonUtils {
 		}
 		return (unixtimestamp == 0 ? 0 : unixtimestamp * 1000);
 	}
-	
-	/**
-	 * 
-	 * @param array
-	 * @return
-	 */
+
 	public static boolean isEmpty(Object[] array) {
 		return array==null || array.length==0 ;
 	}
 	
-	
-	/**
-	 * 
-	 * @param c
-	 * @return
-	 */
 	public static boolean isEmpty(Collection<?> c) {
 		return c==null || c.isEmpty() ;
 	}
-	
-	
-	/**
-	 * 集合类是否为empty
-	 * @param c
-	 * @return
-	 */
+
 	public static boolean isNotEmpty(Collection<?> c) {
 		return !isEmpty(c);
 	}
@@ -220,9 +157,6 @@ public class CommonUtils {
 	
 	/**
 	 * 在from和to都不为null的情况下, 将集合类from添加到to中去
-	 * @param from
-	 * @param to
-	 * @return 
 	 */
 	public static <T> boolean addAll(Collection<T> from, Collection<T> to) {
 		if(from!=null && to!=null) {
@@ -230,92 +164,46 @@ public class CommonUtils {
 		}
 		return false ;
 	}
-	
-	
-	/**
-	 * 
-	 * @param c
-	 * @return
-	 */
+
 	public static int size(Collection<?> c) {
 		return c==null ? 0 : c.size() ;
 	}
 	
-	
-	/**
-	 * 
-	 * @return
-	 */
     @SuppressWarnings("unchecked")
 	public static <T> List<T> emptyList() {
     	return (List<T>) EMPTY_LIST;
     }
     
-    
     /**
      * 获取一个空List
-     * @param list
-     * @return
      */
     @SuppressWarnings("unchecked")
 	public static <T> List<T> emptyList(List<T> list) {
     	return (List<T>) (list==null ? emptyList() : list) ;
     }
     
-    
-    /**
-     * 
-     * @param c
-     * @return
-     */
 	public static <T> List<T> newArrayList(Collection<?> c) {
 		return new ArrayList<>(size(c));
 	}
-	
-	/**
-	 * 
-	 * @param c
-	 * @return
-	 */
+
 	public static <T> Set<T> newHashSet(Collection<?> c) {
 		return new HashSet<>(size(c), 1.0f) ;
 	}
-	
-	
-    /**
-     * 
-     * @param map
-     * @return
-     */
+
     public static boolean isEmpty(Map<?,?> map) {
     	return map==null || map.isEmpty() ;
     }
 
-    /**
-     * 
-     * @return
-     */
     @SuppressWarnings("unchecked")
 	public static <K,V> Map<K,V> emptyMap() {
     	return (Map<K,V>) EMPTY_MAP;
     }
 
-    /**
-     * 
-     * @param map
-     * @return
-     */
     @SuppressWarnings("unchecked")
 	public static <K,V> Map<K,V> emptyMap(Map<K,V> map) {
     	return (Map<K, V>) (map == null ? EMPTY_MAP : map) ;
     }
-    
-    
-    /**
-     * 
-     * @param size
-     * @return
-     */
+
 	public static <K,V> Map<K,V> stableMap(int size) {
     	return new HashMap<K, V>(size, 1.0f) ;
     }
@@ -325,7 +213,6 @@ public class CommonUtils {
 	 * @param array
 	 * @param index
 	 * @param def
-	 * @return
 	 */
 	public static <T> T indexGet(T[] array, int index, T def) {
 		int arrayLength = array == null ? 0 : array.length;
@@ -338,7 +225,6 @@ public class CommonUtils {
 	 * @param arrayLength
 	 * @param index
 	 * @param def
-	 * @return
 	 */
 	public static <T> T indexGet(T[] array, int arrayLength, int index, T def) {
 		if (index >= 0 && index < arrayLength) {
@@ -395,73 +281,35 @@ public class CommonUtils {
 		}
 		return str;
 	}
-	
-	
-	/**
-	 * 
-	 * @param t
-	 * @return
-	 */
+
 	public static IllegalStateException illegalStateException(Throwable t) {
 		return new IllegalStateException(t) ;
 	}
 	
-	/**
-	 * 
-	 * @param message
-	 * @return
-	 */
 	public static IllegalStateException illegalStateException(String message) {
 		return new IllegalStateException(message) ;
 	}
 	
-	/**
-	 * 
-	 * @param message
-	 * @param t
-	 * @return
-	 */
 	public static IllegalStateException illegalStateException(String message, Throwable t) {
 		return new IllegalStateException(message, t) ;
 	}
-	
-	
-	
-	/**
-	 * 
-	 * @param message
-	 * @return
-	 */
+
 	public static IllegalArgumentException illegalArgumentException(String message) {
 		return new IllegalArgumentException(message) ;
 	}
-	
-	
-	/**
-	 * 
-	 * @return
-	 */
+
 	public static UnsupportedOperationException unsupportedMethodException(){
 		return new UnsupportedOperationException("unsupport this method");
 	}
-	
-	
-	/**
-	 * 
-	 * @param t
-	 * @return
-	 */
+
 	public static Throwable foundRealThrowable(Throwable t) {
 		Throwable cause = t.getCause() ;
 		if(cause==null) return t ;
 		return foundRealThrowable(cause) ;
 	}
-	
-	
+
 	/**
 	 * 格式化异常
-	 * @param t
-	 * @return
 	 */
 	public static String formatThrowable(Throwable t) {
 		if (t == null) return "";

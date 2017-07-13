@@ -17,7 +17,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
-
 /**
  * Created by Lucare.Feng on 2017/3/6.
  */
@@ -82,6 +81,5 @@ public class ShiroRealm extends AuthorizingRealm {
         // 返回null的话，就会导致任何用户访问被拦截的请求时，都会自动跳转到unauthorizedUrl指定的地址
         return null;
     }
-
 
 }

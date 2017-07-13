@@ -59,11 +59,12 @@ public class MyGenerator {
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
         strategy.setTablePrefix(new String[]{"t_"});// 此处可以修改为您的表前缀
-        strategy.setNaming(NamingStrategy.remove_prefix_and_camel);// 表名生成策略
+//        strategy.setNaming(NamingStrategy.remove_prefix_and_camel);// 表名生成策略
+//        strategy.setNaming(NamingStrategy.removePrefixAndCamel());// 表名生成策略
         // strategy.setInclude(new String[] { "user" }); // 需要生成的表
         strategy.setExclude(new String[]{"t_user","t_role","t_permission"}); // 排除生成的表
         // 字段名生成策略
-        strategy.setFieldNaming(NamingStrategy.underline_to_camel);
+//        strategy.setFieldNaming(NamingStrategy.underline_to_camel);
         // 自定义实体父类
         // strategy.setSuperEntityClass("com.fcs.demo.TestEntity");
         // 自定义实体，公共字段
