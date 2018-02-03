@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 
 <head>
     <meta charset="utf-8">
@@ -39,6 +40,9 @@
         <div class="ibox-content">
             <div class="row row-lg">
                 <div class="col-sm-12">
+                    <!--<span shiro:authenticated="true" >-->
+                          <!--<span>欢迎您：<span th:text="${userInfo.realName}"></span></span>-->
+                    <!--</span>-->
                     <h4 class="example-title">角色列表</h4>
                     <div class="example">
                         <table data-toggle="table" data-url="/admin/role/list" data-height="600" data-response-handler="handlerData"

@@ -3,7 +3,9 @@ package com.fcs.admin.web;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.fcs.admin.entity.User;
 import com.fcs.admin.service.IUserService;
+import com.fcs.common.constant.AuthConstant;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,6 +75,8 @@ public class UserController {
 
     @RequestMapping("/toCreate")
     public String toCreate(User user) {
+//        String md5Pwd = new Md5Hash(user.getPassword()).toString();
+//        user.setPassword(md5Pwd);
         user.insert();
         return "toCreate";
     }
